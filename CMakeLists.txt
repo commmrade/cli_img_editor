@@ -6,7 +6,7 @@ enable_testing()
 
 set (CMAKE_CXX_STANDARD 23)
 
-add_executable(proj main.cpp img.cpp)
+add_executable(proj main.cpp img.cpp command.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

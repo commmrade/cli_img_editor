@@ -11,12 +11,13 @@
 
 Image::Image(const std::string file_path)
 {
-    data = stbi_load(file_path.c_str(), &width, &height, &channels, 0);
+    data = stbi_load(file_path.c_str(), &width, &height, &channels, 0); //Idk what 0 means
     std::print("Width: {}\nHeight: {}\nChannels: {}\n", width, height, channels);
 }
 void Image::write(const std::string file_path)
 {
-    stbi_write_jpg(file_path.c_str(), width, height, channels, data, width * sizeof(int));
+    stbi_write_jpg(file_path.c_str(), width, height, channels, data, width * sizeof(int)); // width * sizeof(int) iss good goida 
+    //No .png because of this btw
 }
 void Image::flipHorizontally()
 {
@@ -26,9 +27,9 @@ void Image::flipHorizontally()
         {
             int index = (j * width + i) * channels;
             //int indexR = ((j * width + width) - (width / 2)) * channels;
-            int indexR = (j * width + (width - i - 1)) * channels;
+            int indexR = (j * width + (width - i - 1)) * channels; //Yeah damn....
 
-            std::swap(data[indexR], data[index]);
+            std::swap(data[indexR], data[index]); 
             std::swap(data[indexR + 1], data[index + 1]);
             std::swap(data[indexR + 2], data[index + 2]);
         }
@@ -65,7 +66,7 @@ void Image::scale(int scale_factor)
         for(auto j : std::views::iota(0, new_height))
         {
             int index = (j * new_width + i) * channels;
-            int indexOld = ((j * scale_factor) * width + (i * scale_factor)) * channels;
+            int indexOld = ((j * scale_factor) * width + (i * scale_factor)) * channels; //Old image indexes
 
             //Color clr = GetPixel(i, j);
             newData[index] = data[indexOld];
@@ -75,7 +76,7 @@ void Image::scale(int scale_factor)
         }
     }
 
-    delete []data;
+    delete []data; //Dealloc memory
 
     data = newData;
     width = new_width;

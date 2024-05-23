@@ -12,7 +12,7 @@
 Image::Image(const std::string file_path)
 {
     data = stbi_load(file_path.c_str(), &width, &height, &channels, 0); //Idk what 0 means
-    std::print("Width: {}\nHeight: {}\nChannels: {}\n", width, height, channels);
+    //std::print("Width: {}\nHeight: {}\nChannels: {}\n", width, height, channels);
 }
 void Image::write(const std::string file_path)
 {

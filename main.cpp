@@ -16,7 +16,7 @@ int main(int argc, char** argv){
 
     Image img(argv[1]);
     
-    Action action = Commands::Parse();
+    Action action = Commands::Get().Parse();
     switch (action)
     {
         case FlipHorizontal:

@@ -17,7 +17,17 @@ enum Action
 class Commands
 {
 private:
+    
 
 public:
-    static Action Parse();
+    Action Parse();
+
+    static auto& Get()
+    {
+        static Commands _instance;
+        return _instance;
+    }
+
+    
+
 };

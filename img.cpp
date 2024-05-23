@@ -25,9 +25,11 @@ void Image::flipHorizontally()
     {
         for(auto j : std::views::iota(0, height))
         {
-            int index = (j * width + i) * channels;
+            //int index = (j * width + i) * channels;
+            uint index = getIndex(i, j);
             //int indexR = ((j * width + width) - (width / 2)) * channels;
-            int indexR = (j * width + (width - i - 1)) * channels; //Yeah damn....
+            //int indexR = (j * width + (width - i - 1)) * channels; //Yeah damn....
+            uint indexR = getIndex(width - i - 1, j);
 
             std::swap(data[indexR], data[index]); 
             std::swap(data[indexR + 1], data[index + 1]);
@@ -41,9 +43,13 @@ void Image::flipVertically()
     {
         for(auto j : std::views::iota(0, height / 2))
         {
-            int index = (j * width + i) * channels;
+            //int index = (j * width + i) * channels;
+            uint index = getIndex(i, j);
             //int indexR = ((j * width + width) - (width / 2)) * channels;
-            int indexR = ((height - j - 1) * width + i) * channels;
+            //int indexR = ((height - j - 1) * width + i) * channels;
+            uint indexR = getIndex(i, height - j - 1);
+
+
 
             std::swap(data[indexR], data[index]);
             std::swap(data[indexR + 1], data[index + 1]);

@@ -37,17 +37,18 @@ int main(int argc, char** argv){
             img.scale(scale);
             break;
         
-        // case Blur:
-        //     int blur_str;
-        //     printf("Enter blur radius (0+): ");
-        //     std::cin >> blur_str;
+        case Blur:
+            int blur_str;
+            printf("Enter blur radius (0+): ");
+            std::cin >> blur_str;
             
-        //     if(blur_str < 0) {
-        //         return -1;
-        //     }
-        //     printf("Processing...");
-        //     img.blur(blur_str);
-        //     break;
+            if(blur_str < 0) {
+                return -1;
+            }
+            printf("Processing...");
+            //img.blur(blur_str);
+            img.blur(blur_str);
+            break;
         
         case ImageResolution:
             img.printResolution();
@@ -86,7 +87,7 @@ int main(int argc, char** argv){
 
     }
 
-  
+    //printf("writing\n");
     img.write("output.jpg");
 
 }

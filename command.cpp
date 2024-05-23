@@ -4,7 +4,7 @@
 
 Action Commands::Parse()
 {
-    printf("Please enter an action (fliph, flipv, scale, imgres, exit): ");
+    printf("Please enter an action (fliph, flipv, scale, imgres, blur, exit): ");
 
     std::string action;
     std::cin >> action;
@@ -21,10 +21,10 @@ Action Commands::Parse()
     {
         return Scale;
     }
-    // else if (action == "blur")
-    // {
-    //     return Blur;
-    // }
+    else if (action == "blur")
+    {
+        return Blur;
+    }
     else if (action == "imgres")
     {
         return ImageResolution;

@@ -61,14 +61,18 @@ void Image::scale(int scale_factor)
 
     IMAGE *newData = new unsigned char[new_width * new_height * channels];
 
+
+    
     for(auto i : std::views::iota(0, new_width))
     {
         for(auto j : std::views::iota(0, new_height))
         {
             int index = (j * new_width + i) * channels;
-            int indexOld = ((j * scale_factor) * width + (i * scale_factor)) * channels; //Old image indexes
-
-            //Color clr = GetPixel(i, j);
+            //int indexOld = ((j * scale_factor) * width + (i * scale_factor)) * channels; //Old image indexes
+            
+            uint indexOld = getIndex(i * scale_factor, j * scale_factor);
+            //uint index = getIndex(i, j);
+          
             newData[index] = data[indexOld];
             newData[index + 1] = data[indexOld + 1];
             newData[index + 2] = data[indexOld + 2];
@@ -83,9 +87,51 @@ void Image::scale(int scale_factor)
     height = new_height;
 
 
+
 }
 void Image::printResolution()
 {
     std::print("Width: {}\nHeight: {}\nChannels: {}\n", width, height, channels);
+}
+void Image::blur(int blur_factor)
+{   
+    for(auto i : std::views::iota(0, width - blur_factor))
+    {
+        for(auto j : std::views::iota(0, height - blur_factor))
+        {
+            unsigned int r = 0;
+            unsigned int g = 0;
+            unsigned int b = 0;
+
+            for(auto k : std::views::iota(0, blur_factor))
+            {
+                for(auto l : std::views::iota(0, blur_factor))
+                {
+                    //int index = ((j + k) * width + (l + i)) * channels;
+                    uint index = getIndex(i + l, j + k);
+                    r += data[index];
+                    g += data[index + 1];
+                    b += data[index + 2];
+                }
+            }
+
+            //int index = (j * width + i) * channels;
+            uint index = getIndex(i, j);
+
+            data[index] = r / (blur_factor * blur_factor);
+            data[index + 1] = g / (blur_factor * blur_factor);
+            data[index + 2] = b / (blur_factor * blur_factor);
+
+            // data[index] = 0;
+            // data[index + 1] = 0;
+            // data[index + 2] = 0;
+
+
+        }
+    }
+}
+unsigned int Image::getIndex(int w, int h)
+{
+    return (h * width + w) * channels;
 }
 

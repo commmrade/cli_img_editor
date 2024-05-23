@@ -6,7 +6,7 @@ enum Action
 {
     FlipVertical,
     FlipHorizontal,
-    //Blur,
+    Blur,
     Scale,
     ImageResolution,
     //Cut,

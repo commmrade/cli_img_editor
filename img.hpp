@@ -43,5 +43,11 @@ public:
     void scale(int scale_factor);
     void printResolution();
 
+    void blur(int blur_factor);
+
+
+    //Helper functions
+    unsigned int getIndex(int width, int height);
+
 
 };
